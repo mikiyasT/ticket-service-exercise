@@ -31,13 +31,16 @@ public class TicketServiceImplTest {
         Optional<SeatHold> hold = ticketService.findAndHoldSeats(1);
         assertTrue(hold.isPresent());
         assertNotNull(hold.get().getId());
-        assertEquals(1, hold.get().getNumSeats());
+        System.out.println("Simple Test hold " +  hold.get().getNumSeats(hold.get().getId()));
+        assertEquals(1, hold.get().getNumSeats(hold.get().getId()));
         assertEquals(9, ticketService.numSeatsAvailable());
-
+        
+        System.out.println("Simple Test hold " +  hold.get().getNumSeats(hold.get().getId()));
+        
         hold = ticketService.findAndHoldSeats(5);
         assertTrue(hold.isPresent());
         assertNotNull(hold.get().getId());
-        assertEquals(5, hold.get().getNumSeats());
+        assertEquals(5, hold.get().getNumSeats(hold.get().getId()));
         assertEquals(4, ticketService.numSeatsAvailable());
     }
 
@@ -46,7 +49,7 @@ public class TicketServiceImplTest {
         Optional<SeatHold> hold = ticketService.findAndHoldSeats(5);
         assertTrue(hold.isPresent());
         assertNotNull(hold.get().getId());
-        assertEquals(5, hold.get().getNumSeats());
+        assertEquals(5, hold.get().getNumSeats(hold.get().getId()));
         assertEquals(5, ticketService.numSeatsAvailable());
 
         Optional<String> reservationId = ticketService.reserveSeats(hold.get().getId());
@@ -65,7 +68,8 @@ public class TicketServiceImplTest {
         Optional<SeatHold> hold = ticketService.findAndHoldSeats(10);
         assertTrue(hold.isPresent());
         assertNotNull(hold.get().getId());
-        assertEquals(10, hold.get().getNumSeats());
+        System.out.println("Test max seat hOld" + hold.get().getNumSeats(hold.get().getId()));
+        assertEquals(10, hold.get().getNumSeats(hold.get().getId()));
     }
 
     @Test
